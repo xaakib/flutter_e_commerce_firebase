@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,11 +16,40 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        body: Container(
-          child: Center(child: Text("Hello World")),
-        ),
-      ),
+      home: LandingPage(),
+    );
+  }
+}
+
+class LandingPage extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Text("Error: ${snapshot.error}"),
+            ),
+          );
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Scaffold(
+            body: Container(
+              child: Center(
+                child: Text("Firebase App Initialization"),
+              ),
+            ),
+          );
+        }
+        return Scaffold(
+          body: Center(
+            child: Text("Initialization App..."),
+          ),
+        );
+      },
     );
   }
 }
