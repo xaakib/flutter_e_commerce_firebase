@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/constant.dart';
+import 'package:flutter_e_commerce_firebase/screens/homepage.dart';
 import 'package:flutter_e_commerce_firebase/screens/login_page.dart';
 
 class LandingPage extends StatelessWidget {
@@ -32,15 +33,18 @@ class LandingPage extends StatelessWidget {
                   ),
                 );
               }
-              //checking the auth state loading...
-              return Scaffold(
-                body: Center(
-                  child: Text(
-                    "Initialization App...",
-                    style: Constants.regulerheading,
-                  ),
-                ),
-              );
+              //Connection state active - Do the user login check inside the
+              //if statement
+              if (streamsnapshot.connectionState == ConnectionState.active) {
+                User _user = streamsnapshot.data;
+                if (_user == null) {
+                  //user not logged in ,  head to login
+                  return LoginPage();
+                } else {
+                  //user is logged in , head to homepage
+                  return HomeScreen();
+                }
+              }
             },
           );
         }
@@ -48,7 +52,10 @@ class LandingPage extends StatelessWidget {
         //connection to firebase in loading...
         return Scaffold(
           body: Center(
-            child: Text("checking authentication...",style: Constants.regulerheading,),
+            child: Text(
+              "checking authentication...",
+              style: Constants.regulerheading,
+            ),
           ),
         );
       },
