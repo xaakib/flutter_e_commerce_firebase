@@ -26,7 +26,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Text("Inpute Feild"),
-                CustomBtn(),
+                CustomBtn(
+                  text: "Create New Account",
+                  onPressed: () {
+                    print("Clicked Create New Account");
+                  },
+                  outLineBtn: true,
+                ),
               ],
             )),
       ),
