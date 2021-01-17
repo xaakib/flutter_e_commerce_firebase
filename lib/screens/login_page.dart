@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_btn.dart';
+import 'package:flutter_e_commerce_firebase/widgets/custom_input.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -25,13 +26,31 @@ class _LoginPageState extends State<LoginPage> {
                     style: Constants.boldheading,
                   ),
                 ),
-                Text("Inpute Feild"),
-                CustomBtn(
-                  text: "Create New Account",
-                  onPressed: () {
-                    print("Clicked Create New Account");
-                  },
-                  outLineBtn: true,
+                Column(
+                  children: [
+                    CustomInput(
+                      hintText: "Email",
+                    ),
+                    CustomInput(
+                      hintText: "Password",
+                    ),
+                    CustomBtn(
+                      text: "login",
+                      onPressed: () {
+                        print("Clicked the Login Button");
+                      },
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: CustomBtn(
+                    text: "Create New Account",
+                    onPressed: () {
+                      print("Clicked Create New Account");
+                    },
+                    outLineBtn: true,
+                  ),
                 ),
               ],
             )),
