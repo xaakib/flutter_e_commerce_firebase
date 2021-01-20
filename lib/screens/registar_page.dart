@@ -10,6 +10,31 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+
+  //build an aler dialog to display some error`s
+  Future<void> _alerDialogbuilder() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Container(
+            child: Text("Just some random text for now"),
+          ),
+          actions: [
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Close Dialog"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   CustomBtn(
                     text: "Create New Account",
                     onPressed: () {
-                      print("Clicked the Login Button Click");
+                     _alerDialogbuilder();
                     },
                   ),
                 ],
@@ -48,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: CustomBtn(
                   text: "Back To Login",
                   onPressed: () {
-                   Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   outLineBtn: true,
                 ),
