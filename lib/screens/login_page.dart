@@ -14,46 +14,47 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 24.0),
-                  child: Text(
-                    "Welcome User, \n login to your acount",
-                    textAlign: TextAlign.center,
-                    style: Constants.boldheading,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 24.0),
+                child: Text(
+                  "Welcome User,\n login to your acount",
+                  textAlign: TextAlign.center,
+                  style: Constants.boldheading,
+                ),
+              ),
+              Column(
+                children: [
+                  CustomInput(
+                    hintText: "Email",
                   ),
-                ),
-                Column(
-                  children: [
-                    CustomInput(
-                      hintText: "Email",
-                    ),
-                    CustomInput(
-                      hintText: "Password",
-                    ),
-                    CustomBtn(
-                      text: "login",
-                      onPressed: () {
-                        print("Clicked the Login Button");
-                      },
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: CustomBtn(
-                    text: "Create New Account",
+                  CustomInput(
+                    hintText: "Password",
+                  ),
+                  CustomBtn(
+                    text: "login",
                     onPressed: () {
-                      print("Clicked Create New Account");
+                      print("Clicked the Login Button Click");
                     },
-                    outLineBtn: true,
                   ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: CustomBtn(
+                  text: "Create New Account",
+                  onPressed: () {
+                    print("Clicked Create New Account");
+                  },
+                  outLineBtn: true,
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
