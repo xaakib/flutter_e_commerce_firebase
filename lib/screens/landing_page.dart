@@ -24,9 +24,10 @@ class LandingPage extends StatelessWidget {
           //streambuilder can check the login state live
           return StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
+            // ignore: missing_return
             builder: (context, streamsnapshot) {
               //if has error ?? then showing error
-              if (snapshot.hasError) {
+              if (streamsnapshot.hasError) {
                 return Scaffold(
                   body: Center(
                     child: Text("Error: ${streamsnapshot.error}"),
@@ -44,6 +45,13 @@ class LandingPage extends StatelessWidget {
                   //user is logged in , head to homepage
                   return HomeScreen();
                 }
+              }
+              if (streamsnapshot.connectionState == ConnectionState.waiting) {
+              
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+              
               }
             },
           );
