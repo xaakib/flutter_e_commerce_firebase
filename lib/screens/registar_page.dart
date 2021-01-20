@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_firebase/constant.dart';
-import 'package:flutter_e_commerce_firebase/screens/registar_page.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_btn.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_input.dart';
 
-class LoginPage extends StatefulWidget {
+import '../constant.dart';
+
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 padding: EdgeInsets.only(top: 24.0),
                 child: Text(
-                  "Welcome User,\n login to your acount",
+                  "Create a new account",
                   textAlign: TextAlign.center,
                   style: Constants.boldheading,
                 ),
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: "Password",
                   ),
                   CustomBtn(
-                    text: "login",
+                    text: "Create New Account",
                     onPressed: () {
                       print("Clicked the Login Button Click");
                     },
@@ -46,9 +46,9 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: CustomBtn(
-                  text: "Create New Account",
+                  text: "Back To Login",
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
+                   Navigator.pop(context);
                   },
                   outLineBtn: true,
                 ),
