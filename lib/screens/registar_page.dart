@@ -10,8 +10,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-
   //build an aler dialog to display some error`s
   Future<void> _alerDialogbuilder() async {
     return showDialog(
@@ -35,6 +33,8 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
   }
+
+  bool _registarFormLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +64,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   CustomBtn(
                     text: "Create New Account",
                     onPressed: () {
-                     _alerDialogbuilder();
+                      setState(() {
+                        _registarFormLoading = true;
+                      });
                     },
+                    isLoading: _registarFormLoading,
                   ),
                 ],
               ),
@@ -76,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  outLineBtn: true,
+                  outlineBtn: true,
                 ),
               ),
             ],
