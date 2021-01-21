@@ -34,7 +34,12 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+// default form loading state
   bool _registarFormLoading = false;
+
+  // form input Field Values
+  String _registarEmail = "";
+  String _registarPassword = "";
 
   @override
   Widget build(BuildContext context) {
