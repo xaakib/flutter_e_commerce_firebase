@@ -43,7 +43,7 @@ class LandingPage extends StatelessWidget {
                   return LoginPage();
                 } else {
                   //user is logged in , head to homepage
-                  return HomeScreen();
+                  return HomePage();
                 }
               }
               if (streamsnapshot.connectionState == ConnectionState.waiting) {
