@@ -11,34 +11,34 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  //build an aler dialog to display some error`s
-  Future<void> _alerDialogbuilder() async {
+  // Build an alert dialog to display some errors.
+  Future<void> _alertDialogBuilder(String error) async {
     return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Error"),
-          content: Container(
-            child: Text("Just some random text for now"),
-          ),
-          actions: [
-            FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("Close Dialog"),
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Container(
+              child: Text(error),
             ),
-          ],
-        );
-      },
-    );
+            actions: [
+              FlatButton(
+                child: Text("Close Dialog"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
   }
 
-  Future<void> _alertDialogBuilder() async {
+  // Create a new user account
+  Future<String> _createAccount() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _registarEmail, password: _registarPassword);
+          email: _registerEmail, password: _registerPassword);
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -52,26 +52,48 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-// default form loading state
-  bool _registarFormLoading = false;
+  void _submitForm() async {
+    // Set the form to loading state
+    setState(() {
+      _registerFormLoading = true;
+    });
 
-  // form input Field Values
-  String _registarEmail = "";
-  String _registarPassword = "";
+    // Run the create account method
+    String _createAccountFeedback = await _createAccount();
 
-  // Foucs Node for input fields
+    // If the string is not null, we got error while create account.
+    if (_createAccountFeedback != null) {
+      _alertDialogBuilder(_createAccountFeedback);
 
-  FocusNode _passwordFocuseNodel;
+      // Set the form to regular state [not loading].
+      setState(() {
+        _registerFormLoading = false;
+      });
+    } else {
+      // The String was null, user is logged in.
+      Navigator.pop(context);
+    }
+  }
+
+  // Default Form Loading State
+  bool _registerFormLoading = false;
+
+  // Form Input Field Values
+  String _registerEmail = "";
+  String _registerPassword = "";
+
+  // Focus Node for input fields
+  FocusNode _passwordFocusNode;
 
   @override
   void initState() {
-    _passwordFocuseNodel = FocusNode();
+    _passwordFocusNode = FocusNode();
     super.initState();
   }
 
   @override
   void dispose() {
-    _passwordFocuseNodel = FocusNode();
+    _passwordFocusNode.dispose();
     super.dispose();
   }
 
@@ -85,9 +107,11 @@ class _RegisterPageState extends State<RegisterPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(
+                  top: 24.0,
+                ),
                 child: Text(
-                  "Create a new account",
+                  "Create A New Account",
                   textAlign: TextAlign.center,
                   style: Constants.boldheading,
                 ),
@@ -95,36 +119,39 @@ class _RegisterPageState extends State<RegisterPage> {
               Column(
                 children: [
                   CustomInput(
-                    textinputAction: TextInputAction.next,
+                    hintText: "Email...",
                     onChanged: (value) {
-                      _registarEmail = value;
+                      _registerEmail = value;
                     },
-                    hintText: "Email",
                     onSubmit: (value) {
-                      _passwordFocuseNodel.requestFocus();
+                      _passwordFocusNode.requestFocus();
                     },
+                    textinputAction: TextInputAction.next,
                   ),
                   CustomInput(
+                    hintText: "Password...",
                     onChanged: (value) {
-                      _registarPassword = value;
+                      _registerPassword = value;
                     },
+                    focusNode: _passwordFocusNode,
                     isPasswordField: true,
-                    hintText: "Password",
-                    focusNode: _passwordFocuseNodel,
+                    onSubmit: (value) {
+                      _submitForm();
+                    },
                   ),
                   CustomBtn(
                     text: "Create New Account",
                     onPressed: () {
-                      setState(() {
-                        _registarFormLoading = true;
-                      });
+                      _submitForm();
                     },
-                    isLoading: _registarFormLoading,
-                  ),
+                    isLoading: _registerFormLoading,
+                  )
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.only(
+                  bottom: 16.0,
+                ),
                 child: CustomBtn(
                   text: "Back To Login",
                   onPressed: () {
