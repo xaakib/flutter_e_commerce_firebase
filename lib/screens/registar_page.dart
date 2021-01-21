@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_btn.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_input.dart';
@@ -32,6 +33,23 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       },
     );
+  }
+
+  Future<void> _alertDialogBuilder() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _registarEmail, password: _registarPassword);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email.';
+      }
+      return e.message;
+    } catch (e) {
+      return e.toString();
+    }
   }
 
 // default form loading state
@@ -82,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       _registarEmail = value;
                     },
                     hintText: "Email",
-                    onSubmit: (value){
+                    onSubmit: (value) {
                       _passwordFocuseNodel.requestFocus();
                     },
                   ),
