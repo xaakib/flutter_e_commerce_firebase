@@ -15,6 +15,7 @@ class _RegisterPageState extends State<RegisterPage> {
   //build an aler dialog to display some error`s
   Future<void> _alerDialogbuilder() async {
     return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return AlertDialog(
