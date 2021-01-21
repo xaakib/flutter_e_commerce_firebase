@@ -77,6 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Column(
                 children: [
                   CustomInput(
+                    textinputAction: TextInputAction.next,
                     onChanged: (value) {
                       _registarEmail = value;
                     },
@@ -89,6 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onChanged: (value) {
                       _registarPassword = value;
                     },
+                    isPasswordField: true,
                     hintText: "Password",
                     focusNode: _passwordFocuseNodel,
                   ),

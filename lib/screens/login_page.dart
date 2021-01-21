@@ -30,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               Column(
                 children: [
                   CustomInput(
+                    textinputAction: TextInputAction.next,
                     hintText: "Email",
                   ),
                   CustomInput(
