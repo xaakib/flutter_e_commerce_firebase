@@ -3,8 +3,8 @@ import 'package:flutter_e_commerce_firebase/constant.dart';
 
 class CustomInput extends StatelessWidget {
   final String hintText;
-  final Function onSubmit;
-  final Function onChanged;
+  final Function (String)onSubmit;
+  final Function(String) onChanged;
   final FocusNode focusNode;
 
   const CustomInput(
