@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/constant.dart';
+import 'package:flutter_e_commerce_firebase/tabs/home_tab.dart';
+import 'package:flutter_e_commerce_firebase/tabs/saved_tab.dart';
+import 'package:flutter_e_commerce_firebase/tabs/search_tab.dart';
 import 'package:flutter_e_commerce_firebase/widgets/bottom_tabs.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,22 +43,9 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               children: [
-                // HomeTab(),
-                // SearchTab(),
-                // SavedTab(),
-                Container(
-                  child: Center(
-                      child: Text(
-                    "HomePage",
-                    style: Constants.regulerheading,
-                  )),
-                ),
-                Container(
-                  child: Center(child: Text("SearchScreen")),
-                ),
-                Container(
-                  child: Center(child: Text("saved Page")),
-                ),
+                HomeTab(),
+                SearchTab(),
+                SavedTab(),
               ],
             ),
           ),
