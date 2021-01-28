@@ -13,7 +13,6 @@ class CustomActionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
     bool _hasTitle = hasTitle ?? true;
-    bool _hasBackground = hasBackground ?? true;
 
     return Container(
       decoration: BoxDecoration(
