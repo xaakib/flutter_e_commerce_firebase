@@ -19,10 +19,10 @@ class CustomActionBar extends StatelessWidget {
         color: Colors.white,
       ),
       padding: EdgeInsets.only(
-        top: 56.0,
-        left: 24.0,
-        right: 24.0,
-        bottom: 42.0,
+        top: 30.0,
+        left: 20.0,
+        right: 20.0,
+        bottom: 20.0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
