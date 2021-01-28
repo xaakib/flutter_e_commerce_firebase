@@ -14,7 +14,11 @@ class HomeTab extends StatelessWidget {
             "HomePage",
             style: Constants.regulerheading,
           )),
-          CustomActionBar(),
+          CustomActionBar(
+            hasBackArrrow: false,
+            hasTitle: true,
+            title: "Action Bar",
+          ),
         ],
       ),
     );
