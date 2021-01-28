@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/tabs/home_tab.dart';
 import 'package:flutter_e_commerce_firebase/tabs/saved_tab.dart';
 import 'package:flutter_e_commerce_firebase/tabs/search_tab.dart';
