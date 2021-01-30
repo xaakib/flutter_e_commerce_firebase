@@ -27,12 +27,15 @@ class _ProductPageState extends State<ProductPage> {
         .doc(_user.uid)
         .collection("Cart")
         .doc(widget.productId)
-        .set({"size": 1});
+        .set({"size": _selectedProductSize});
   }
 
   final SnackBar _snackBar = SnackBar(
     content: Text("Product Added to the cart"),
   );
+
+  //
+  String _selectedProductSize = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +111,12 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),
                       ),
-                      ProductSize(productSize: productSize),
+                      ProductSize(
+                          onselected: (size) {
+                            //// this is recived on productsize widget and storeed this variable for firebase action
+                            _selectedProductSize = size;
+                          },
+                          productSize: productSize),
                       Padding(
                         padding: const EdgeInsets.all(24.0),
                         child: Row(
