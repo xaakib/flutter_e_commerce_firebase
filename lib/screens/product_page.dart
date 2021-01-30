@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
+import 'package:flutter_e_commerce_firebase/widgets/image_sweep.dart';
 
 class ProductPage extends StatefulWidget {
   final String productId;
@@ -38,20 +39,19 @@ class _ProductPageState extends State<ProductPage> {
                 // Collection Data ready to display
                 if (snapshot.connectionState == ConnectionState.done) {
                   Map<String, dynamic> documentData = snapshot.data.data();
+
+                  List imageList = documentData["images"];
                   return ListView(
                     children: [
-                      Container(
-                        height: 400,
-                        child: Image.network(
-                          "${documentData['images'][0]}",
-                        ),
-                      ),
+                      ImageSweep(imageList: imageList),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 4.0),
+                        padding: const EdgeInsets.only(top: 20, left: 24),
                         child: Text(
                           "${documentData['name']}" ?? "Name",
-                          style: Constants.boldheading,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.black),
                         ),
                       ),
                       Padding(
@@ -59,7 +59,11 @@ class _ProductPageState extends State<ProductPage> {
                             horizontal: 24, vertical: 4.0),
                         child: Text(
                           "\$${documentData['price']}" ?? "Price",
-                          style: Constants.boldheading,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                       Padding(
@@ -69,6 +73,7 @@ class _ProductPageState extends State<ProductPage> {
                           "${documentData['desc']}" ?? "Descriptions",
                           style: TextStyle(
                             color: Colors.black,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
