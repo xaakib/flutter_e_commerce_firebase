@@ -90,6 +90,44 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       ProductSize(productSize: productSize),
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFDCDCDC),
+                                  borderRadius: BorderRadius.circular(12.0)),
+                              alignment: Alignment.center,
+                              child: Image(
+                                  height: 22,
+                                  image: AssetImage(
+                                      "assets/images/tab_saved.png")),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 65,
+                                margin: EdgeInsets.only(left: 16),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Text(
+                                  "Add To Cart",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   );
                 }
