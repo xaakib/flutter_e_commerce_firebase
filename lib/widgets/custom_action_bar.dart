@@ -23,7 +23,6 @@ class CustomActionBar extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
       ),
       padding: EdgeInsets.only(
         top: 30.0,
@@ -37,7 +36,7 @@ class CustomActionBar extends StatelessWidget {
           if (_hasBackArrow)
             GestureDetector(
               onTap: () {
-                // Navigator.pop(context);
+                Navigator.pop(context);
               },
               child: Container(
                 width: 42.0,

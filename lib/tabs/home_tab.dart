@@ -11,7 +11,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Container(
+      child: Container(
         child: Stack(
           children: [
             FutureBuilder<QuerySnapshot>(
@@ -32,7 +32,10 @@ class HomeTab extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.done) {
                   // Display the data inside a list view
                   return Padding(
-                    padding: const EdgeInsets.only(top: 30),
+                    padding: EdgeInsets.only(
+                      top: 70.0,
+                      bottom: 12.0,
+                    ),
                     child: ListView(
                       children: snapshot.data.docs.map((document) {
                         return GestureDetector(
@@ -42,7 +45,6 @@ class HomeTab extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => ProductPage(
                                           productId: document.id,
-                                          
                                         )));
                           },
                           child: Container(
