@@ -64,6 +64,8 @@ class _ProductPageState extends State<ProductPage> {
 
                   List imageList = documentData["images"];
                   List productSize = documentData["size"];
+
+                  _selectedProductSize = productSize[0];
                   return ListView(
                     children: [
                       ImageSweep(imageList: imageList),
