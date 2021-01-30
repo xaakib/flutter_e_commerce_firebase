@@ -9,6 +9,7 @@ class ImageSweep extends StatefulWidget {
 }
 
 class _ImageSweepState extends State<ImageSweep> {
+  int _selectedPage = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,6 +17,11 @@ class _ImageSweepState extends State<ImageSweep> {
         child: Stack(
           children: [
             PageView(
+              onPageChanged: (num) {
+                setState(() {
+                  _selectedPage = num;
+                });
+              },
               children: [
                 for (var i = 0; i < widget.imageList.length; i++)
                   Container(
@@ -34,13 +40,19 @@ class _ImageSweepState extends State<ImageSweep> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   for (var i = 0; i < widget.imageList.length; i++)
-                    Container(
+                    AnimatedContainer(
+                      duration: Duration(
+                        milliseconds: 300,
+                      ),
+                      curve: Curves.easeInOutCubic,
                       margin: EdgeInsets.symmetric(
                         horizontal: 5.0,
                       ),
-                      height: 12,
-                      width: 15,
-                      color: Colors.white,
+                      height: 10,
+                      width: _selectedPage == i ? 35.0 : 10.0,
+                      decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(12.0)),
                     ),
                 ],
               ),
