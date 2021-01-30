@@ -62,7 +62,7 @@ class _ProductPageState extends State<ProductPage> {
                           "\$${documentData['price']}" ?? "Price",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.red,
+                            color: Theme.of(context).accentColor,
                             fontSize: 22,
                           ),
                         ),
@@ -75,6 +75,17 @@ class _ProductPageState extends State<ProductPage> {
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 10.0),
+                        child: Text(
+                          "Select Size",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
