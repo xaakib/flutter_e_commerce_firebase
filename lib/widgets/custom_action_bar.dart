@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constant.dart';
@@ -13,6 +15,11 @@ class CustomActionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
     bool _hasTitle = hasTitle ?? true;
+
+    final CollectionReference _usersRef =
+        FirebaseFirestore.instance.collection("Users");
+
+    User _user = FirebaseAuth.instance.currentUser;
 
     return Container(
       decoration: BoxDecoration(
@@ -60,22 +67,32 @@ class CustomActionBar extends StatelessWidget {
               // ));
             },
             child: Container(
-              width: 42.0,
-              height: 42.0,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                "0",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                width: 42.0,
+                height: 42.0,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ),
-            ),
+                alignment: Alignment.center,
+                child: StreamBuilder(
+                    stream:
+                        _usersRef.doc(_user.uid).collection("Cart").snapshots(),
+                    builder: (context, snapshot) {
+                      int __totalItems = 0;
+
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        List _document = snapshot.data.docs;
+                        __totalItems = _document.length;
+                      }
+                      return Text(
+                        "$__totalItems" ?? "0",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      );
+                    })),
           )
         ],
       ),
