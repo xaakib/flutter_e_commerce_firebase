@@ -15,6 +15,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final CollectionReference _productsRef =
       FirebaseFirestore.instance.collection("Products");
+  final CollectionReference _userRef =
+      FirebaseFirestore.instance.collection("Users"); //user => UserID t (Document) -> Cary -> ProductID
   @override
   Widget build(BuildContext context) {
     return Scaffold(
