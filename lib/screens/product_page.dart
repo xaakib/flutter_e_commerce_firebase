@@ -30,6 +30,10 @@ class _ProductPageState extends State<ProductPage> {
         .set({"size": 1});
   }
 
+  final SnackBar _snackBar = SnackBar(
+    content: Text("Product Added to the cart"),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +131,7 @@ class _ProductPageState extends State<ProductPage> {
                                 onTap: () async {
                                   await _addToCart();
                                   print("Added Cart In Firebase");
+                                  Scaffold.of(context).showSnackBar(_snackBar);
                                 },
                                 child: Container(
                                   height: 65,
