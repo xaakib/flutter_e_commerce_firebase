@@ -11,19 +11,18 @@ class CustomActionBar extends StatelessWidget {
   final bool hasBackground;
   CustomActionBar(
       {this.title, this.hasBackArrrow, this.hasTitle, this.hasBackground});
+
+  final CollectionReference _usersRef =
+      FirebaseFirestore.instance.collection("Users");
+
+  User _user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
     bool _hasTitle = hasTitle ?? true;
 
-    final CollectionReference _usersRef =
-        FirebaseFirestore.instance.collection("Users");
-
-    User _user = FirebaseAuth.instance.currentUser;
-
     return Container(
-      decoration: BoxDecoration(
-      ),
+      decoration: BoxDecoration(),
       padding: EdgeInsets.only(
         top: 30.0,
         left: 20.0,
