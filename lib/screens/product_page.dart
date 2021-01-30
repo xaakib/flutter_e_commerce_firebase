@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
-
 
 class ProductPage extends StatefulWidget {
   final String productId;
@@ -17,7 +17,6 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Stack(
@@ -41,8 +40,37 @@ class _ProductPageState extends State<ProductPage> {
                   Map<String, dynamic> documentData = snapshot.data.data();
                   return ListView(
                     children: [
-                      Image.network(
-                        "${documentData['images'][0]}",
+                      Container(
+                        height: 400,
+                        child: Image.network(
+                          "${documentData['images'][0]}",
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 4.0),
+                        child: Text(
+                          "${documentData['name']}" ?? "Name",
+                          style: Constants.boldheading,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 4.0),
+                        child: Text(
+                          "\$${documentData['price']}" ?? "Price",
+                          style: Constants.boldheading,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 4.0),
+                        child: Text(
+                          "${documentData['desc']}" ?? "Descriptions",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ],
                   );
