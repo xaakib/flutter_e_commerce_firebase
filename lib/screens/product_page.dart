@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
 import 'package:flutter_e_commerce_firebase/widgets/image_sweep.dart';
+import 'package:flutter_e_commerce_firebase/widgets/product_size.dart';
 
 class ProductPage extends StatefulWidget {
   final String productId;
@@ -41,6 +41,7 @@ class _ProductPageState extends State<ProductPage> {
                   Map<String, dynamic> documentData = snapshot.data.data();
 
                   List imageList = documentData["images"];
+                  List productSize = documentData["size"];
                   return ListView(
                     children: [
                       ImageSweep(imageList: imageList),
@@ -77,6 +78,7 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),
                       ),
+                      ProductSize(productSize: productSize),
                     ],
                   );
                 }
