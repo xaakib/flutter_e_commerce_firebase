@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_firebase/services/firebase_serviecs.dart';
 
 import '../constant.dart';
 
@@ -12,10 +13,10 @@ class CustomActionBar extends StatelessWidget {
   CustomActionBar(
       {this.title, this.hasBackArrrow, this.hasTitle, this.hasBackground});
 
+  FirebaseServies _firebaseServies = FirebaseServies();
+
   final CollectionReference _usersRef =
       FirebaseFirestore.instance.collection("Users");
-
-  User _user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     bool _hasBackArrow = hasBackArrrow ?? false;
@@ -73,8 +74,10 @@ class CustomActionBar extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: StreamBuilder(
-                    stream:
-                        _usersRef.doc(_user.uid).collection("Cart").snapshots(),
+                    stream: _usersRef
+                        .doc(_firebaseServies.getUserId())
+                        .collection("Cart")
+                        .snapshots(),
                     builder: (context, snapshot) {
                       int __totalItems = 0;
 

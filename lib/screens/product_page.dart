@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_firebase/services/firebase_serviecs.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
 import 'package:flutter_e_commerce_firebase/widgets/image_sweep.dart';
 import 'package:flutter_e_commerce_firebase/widgets/product_size.dart';
@@ -14,17 +15,12 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final CollectionReference _productsRef =
-      FirebaseFirestore.instance.collection("Products");
-  final CollectionReference _userRef = FirebaseFirestore.instance
-      .collection("Users"); //user => UserID t (Document) -> Cary -> ProductID
-
-  User _user = FirebaseAuth.instance.currentUser;
+  FirebaseServies _firebaseServies = FirebaseServies();
 
 //
   Future _addToCart() {
-    return _userRef
-        .doc(_user.uid)
+    return _firebaseServies.userRef
+        .doc(_firebaseServies.getUserId())
         .collection("Cart")
         .doc(widget.productId)
         .set({"size": _selectedProductSize});
@@ -45,7 +41,7 @@ class _ProductPageState extends State<ProductPage> {
         child: Stack(
           children: [
             FutureBuilder(
-              future: _productsRef.doc(widget.productId).get(),
+              future: _firebaseServies.productsRef.doc(widget.productId).get(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Scaffold(
