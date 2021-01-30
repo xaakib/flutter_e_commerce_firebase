@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
 import 'package:flutter_e_commerce_firebase/widgets/image_sweep.dart';
@@ -15,8 +16,20 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final CollectionReference _productsRef =
       FirebaseFirestore.instance.collection("Products");
-  final CollectionReference _userRef =
-      FirebaseFirestore.instance.collection("Users"); //user => UserID t (Document) -> Cary -> ProductID
+  final CollectionReference _userRef = FirebaseFirestore.instance
+      .collection("Users"); //user => UserID t (Document) -> Cary -> ProductID
+
+  User _user = FirebaseAuth.instance.currentUser;
+
+//
+  Future _addToCart() {
+    return _userRef
+        .doc(_user.uid)
+        .collection("Cart")
+        .doc(widget.productId)
+        .set({"size": 1});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,19 +123,25 @@ class _ProductPageState extends State<ProductPage> {
                                       "assets/images/tab_saved.png")),
                             ),
                             Expanded(
-                              child: Container(
-                                height: 65,
-                                margin: EdgeInsets.only(left: 16),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: Text(
-                                  "Add To Cart",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  await _addToCart();
+                                  print("Added Cart In Firebase");
+                                },
+                                child: Container(
+                                  height: 65,
+                                  margin: EdgeInsets.only(left: 16),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Text(
+                                    "Add To Cart",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
