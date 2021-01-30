@@ -22,6 +22,9 @@ class HomeTab extends StatelessWidget {
                   ),
                 );
               }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
 
               // Collection Data ready to display
               if (snapshot.connectionState == ConnectionState.done) {
@@ -44,7 +47,6 @@ class HomeTab extends StatelessWidget {
                                 child: Image.network(
                                   document.data()['images'][0],
                                   fit: BoxFit.cover,
-
                                 ),
                               ),
                             ),
