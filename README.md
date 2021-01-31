@@ -1,6 +1,6 @@
 # flutter_e_commerce_firebase
  
-![Screenshot_1612112806](https://user-images.githubusercontent.com/64243974/106391792-4769ad00-6419-11eb-9f9b-6b036efabba0.png)
+
 ![Screenshot_1612112830](https://user-images.githubusercontent.com/64243974/106391794-49337080-6419-11eb-9c39-6e8fd7bab1e7.png)
 ![Screenshot_1612112838](https://user-images.githubusercontent.com/64243974/106391797-49cc0700-6419-11eb-87b0-6931148ceea4.png)
 ![Screenshot_1612112847](https://user-images.githubusercontent.com/64243974/106391798-4a649d80-6419-11eb-9122-e830a7c5b9a4.png)
