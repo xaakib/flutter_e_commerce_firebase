@@ -10,8 +10,12 @@ class CustomActionBar extends StatelessWidget {
   final bool hasBackArrrow;
   final bool hasTitle;
   final bool hasBackground;
-  CustomActionBar(
-      {this.title, this.hasBackArrrow, this.hasTitle, this.hasBackground});
+  CustomActionBar({
+    this.title,
+    this.hasBackArrrow,
+    this.hasTitle,
+    this.hasBackground,
+  });
 
   FirebaseServies _firebaseServies = FirebaseServies();
 
@@ -68,35 +72,37 @@ class CustomActionBar extends StatelessWidget {
                   ));
             },
             child: Container(
-                width: 42.0,
-                height: 42.0,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                alignment: Alignment.center,
-                child: StreamBuilder(
-                    stream: _usersRef
-                        .doc(_firebaseServies.getUserId())
-                        .collection("Cart")
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      int __totalItems = 0;
+              width: 42.0,
+              height: 42.0,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              alignment: Alignment.center,
+              child: StreamBuilder(
+                stream: _usersRef
+                    .doc(_firebaseServies.getUserId())
+                    .collection("Cart")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  int __totalItems = 0;
 
-                      if (snapshot.connectionState == ConnectionState.active) {
-                        List _document = snapshot.data.docs;
-                        __totalItems = _document.length;
-                      }
-                      return Text(
-                        "$__totalItems" ?? "0",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      );
-                    })),
-          )
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    List _document = snapshot.data.docs;
+                    __totalItems = _document.length;
+                  }
+                  return Text(
+                    "$__totalItems" ?? "0",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
