@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/services/firebase_serviecs.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
@@ -14,7 +13,6 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  
   FirebaseServies _firebaseServies = FirebaseServies();
 
 //

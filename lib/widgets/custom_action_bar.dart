@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce_firebase/screens/cart_page.dart';
 import 'package:flutter_e_commerce_firebase/services/firebase_serviecs.dart';
 
 import '../constant.dart';
@@ -60,9 +61,11 @@ class CustomActionBar extends StatelessWidget {
             ),
           GestureDetector(
             onTap: () {
-              // Navigator.push(context, MaterialPageRoute(
-              //   builder: (context) => CartPage(),
-              // ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CartPage(),
+                  ));
             },
             child: Container(
                 width: 42.0,
