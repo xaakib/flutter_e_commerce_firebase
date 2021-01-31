@@ -24,6 +24,14 @@ class _ProductPageState extends State<ProductPage> {
         .set({"size": _selectedProductSize});
   }
 
+  Future _addToSaved() {
+    return _firebaseServies.userRef
+        .doc(_firebaseServies.getUserId())
+        .collection("Saved")
+        .doc(widget.productId)
+        .set({"size": _selectedProductSize});
+  }
+
   final SnackBar _snackBar = SnackBar(
     content: Text("Product Added to the cart"),
   );
@@ -118,17 +126,23 @@ class _ProductPageState extends State<ProductPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFFDCDCDC),
-                                  borderRadius: BorderRadius.circular(12.0)),
-                              alignment: Alignment.center,
-                              child: Image(
-                                  height: 22,
-                                  image: AssetImage(
-                                      "assets/images/tab_saved.png")),
+                            GestureDetector(
+                              onTap: () async {
+                                await _addToSaved();
+                                Scaffold.of(context).showSnackBar(_snackBar);
+                              },
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFDCDCDC),
+                                    borderRadius: BorderRadius.circular(12.0)),
+                                alignment: Alignment.center,
+                                child: Image(
+                                    height: 22,
+                                    image: AssetImage(
+                                        "assets/images/tab_saved.png")),
+                              ),
                             ),
                             Expanded(
                               child: GestureDetector(
