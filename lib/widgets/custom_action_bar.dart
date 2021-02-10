@@ -29,7 +29,7 @@ class CustomActionBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(),
       padding: EdgeInsets.only(
-        top: 30.0,
+        top: 10.0,
         left: 20.0,
         right: 20.0,
         bottom: 20.0,

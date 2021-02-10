@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce_firebase/services/firebase_serviecs.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
 
+import 'product_page.dart';
+
 class CartPage extends StatefulWidget {
   @override
   _CartPageState createState() => _CartPageState();
@@ -44,7 +46,15 @@ class _CartPageState extends State<CartPage> {
                   child: ListView(
                     children: snapshot.data.docs.map((document) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductPage(
+                                  productId: document.id,
+                                ),
+                              ));
+                        },
                         child: FutureBuilder(
                           future: _firebaseServies.productsRef
                               .doc(document.id)
