@@ -42,18 +42,23 @@ class HomeTab extends StatelessWidget {
                         children: [
                           Container(
                             color: Colors.red,
-                            height: 250,
+                            height: 255,
                             width: MediaQuery.of(context).size.width,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: snapshot.data.docs.map((document) {
-                                  return ProductOne(
-                                    imageUrl: document.data()['images'][0],
-                                    name: document.data()['name'],
-                                    price: document.data()['price'].toString(),
-                                  );
-                                }).toList(),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 3, bottom: 2),
+                                child: Row(
+                                  children: snapshot.data.docs.map((document) {
+                                    return ProductOne(
+                                      imageUrl: document.data()['images'][0],
+                                      name: document.data()['name'],
+                                      price:
+                                          document.data()['price'].toString(),
+                                    );
+                                  }).toList(),
+                                ),
                               ),
                             ),
                           ),
