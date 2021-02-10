@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce_firebase/constant.dart';
 import 'package:flutter_e_commerce_firebase/homescreen_widget/product_widgets.dart';
-import 'package:flutter_e_commerce_firebase/screens/product_page.dart';
 import 'package:flutter_e_commerce_firebase/widgets/custom_action_bar.dart';
+
+import '../screens/product_page.dart';
 
 class HomeTab extends StatelessWidget {
   final CollectionReference _productsRef =
@@ -40,9 +40,31 @@ class HomeTab extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Hot Offers",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.red),
+                                ),
+                                Text(
+                                  "See more",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.blue),
+                                ),
+                              ],
+                            ),
+                          ),
                           Container(
-                            color: Colors.red,
-                            height: 255,
+                            height: 200,
                             width: MediaQuery.of(context).size.width,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -51,11 +73,132 @@ class HomeTab extends StatelessWidget {
                                     const EdgeInsets.only(top: 3, bottom: 2),
                                 child: Row(
                                   children: snapshot.data.docs.map((document) {
-                                    return ProductOne(
-                                      imageUrl: document.data()['images'][0],
-                                      name: document.data()['name'],
-                                      price:
-                                          document.data()['price'].toString(),
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProductPage(
+                                                      productId: document.id,
+                                                    )));
+                                      },
+                                      child: ProductOne(
+                                        imageUrl: document.data()['images'][0],
+                                        name: document.data()['name'],
+                                        price:
+                                            document.data()['price'].toString(),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Weekly Offers",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.red),
+                                ),
+                                Text(
+                                  "See more",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.blue),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 3, bottom: 2),
+                                child: Row(
+                                  children: snapshot.data.docs.map((document) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProductPage(
+                                                      productId: document.id,
+                                                    )));
+                                      },
+                                      child: ProductOne(
+                                        imageUrl: document.data()['images'][0],
+                                        name: document.data()['name'],
+                                        price:
+                                            document.data()['price'].toString(),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "For you",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.red),
+                                ),
+                                Text(
+                                  "See more",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.blue),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 3, bottom: 2),
+                                child: Row(
+                                  children: snapshot.data.docs.map((document) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProductPage(
+                                                      productId: document.id,
+                                                    )));
+                                      },
+                                      child: ProductOne(
+                                        imageUrl: document.data()['images'][0],
+                                        name: document.data()['name'],
+                                        price:
+                                            document.data()['price'].toString(),
+                                      ),
                                     );
                                   }).toList(),
                                 ),

@@ -15,8 +15,8 @@ class ProductOne extends StatelessWidget {
           color: Colors.yellow,
           borderRadius: BorderRadius.circular(12),
         ),
-        height: 270,
-        width: 180,
+        height: 200,
+        width: 120,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,8 +24,8 @@ class ProductOne extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
                 imageUrl,
-                height: 180,
-                width: 180,
+                height: 130,
+                width: 120,
                 fit: BoxFit.cover,
               ),
             ),
@@ -38,16 +38,18 @@ class ProductOne extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    name,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    price,
+                    " \$$price",
                     style: TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 17,
                     ),
+                    textAlign: TextAlign.justify,
+                  ),
+                  Text(
+                    name,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
